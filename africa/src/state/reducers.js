@@ -1,16 +1,15 @@
 import * as types from "./actionTypes";
 
 //step 1: decide state slices
-const initialstate = (
+const initialState = {
     user: {
         id:0,
-        username: "?",
-        password:"?",
-        token:"?",
+        username: "",
+        password: "",
     },
-    listings[]
+	listings:[]
+};
 
-)
 
 //step 3: create reducers
 export function userReducer(user = initialState.user, action) {
