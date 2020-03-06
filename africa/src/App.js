@@ -30,7 +30,7 @@ function App({ appState, user, checkToken, logout }) {
       <Route exact path="/">
         <Register />
       </Route>
-      <Route exact path="/Login">
+      <Route exact path="/login">
         <Login />
       </Route>
       <RestrictedRoute exact path ="/items">
