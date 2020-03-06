@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Switch, Route, Link, useHistory } from "react-router-dom";
-import styled from "styled-components";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { login } from "../state/actionCreators";
@@ -23,10 +22,6 @@ export function Login({ login }) {
 
   function handleSubmit(values, actions) {
     login(values, history);
-  }
-
-  function handleType() {
-    setType(!type);
   }
 
   return (

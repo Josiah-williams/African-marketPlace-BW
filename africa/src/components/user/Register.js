@@ -1,8 +1,9 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
-import Login from "./components/user/Login";
+// import axios from "axios";
+import axiosWithAuth from "../auth/axiosWithAuth"
+import Login from "./Login";
 import { Link, withRouter } from "react-router-dom";
 
 export default function Register(props) {
@@ -16,7 +17,7 @@ export default function Register(props) {
   function handleSubmit(values, actions) {
     console.log(values);
     debugger;
-    axios
+    axiosWithAuth()
       .post(
         " https://lbs-african-marketplace.herokuapp.com/auth/register",
         {
