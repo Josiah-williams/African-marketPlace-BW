@@ -7,41 +7,61 @@ const initialState = {
         username: "",
         password: "",
     },
-	listings:[]
+	items:[]
 };
 
 
 //step 3: create reducers
-export function userReducer(user = initialState.user, action) {
-	switch (action.type) {
-		case types.REGISTER:
-			return action.payload.user;
-		case types.LOGIN:
-			return user;
-		case types.UPDATE_USER:
-			return user;
-		case types.DELETE_USER:
-			return user;
-		default:
-			return user;
-	}
+//Reducer 1, appState
+const initialAppState = false;
+export function appStateReducer(appState = initialAppState, action) {
+  switch (action.type) {
+    case types.LOGIN_SUCCESS:
+      return true;
+    case types.LOG_OUT:
+      return false;
+    case types.TOKEN_CHECK_SUCCESS:
+      return true;
+    case types.TOKEN_CHECK_FAILURE:
+      return false;
+    default:
+      return appState;
+  }
 }
 
-//step 3: create reducers
-export function listReducer(
-	list = initialState.list,
-	action
-) {
+//user data reducer
+const initialUser = {
+	user_id: 0,
+	user_type: "seller"
+  };
+  export function userReducer(user = initialUser, action) {
 	switch (action.type) {
-		case types.CREATE_LIST:
-			return action.payload.list;
-		case types.READ_LIST:
-			return list;
-		case types.UPDATE_LIST:
-			return list;
-		case types.DELETE_LIST:
-			return list;
-		default:
-			return list;
+	  case types.LOGIN_SUCCESS:
+		return action.payload.user;
+	  case types.LOG_OUT:
+		return initialUser;
+	  case types.TOKEN_CHECK_SUCCESS:
+		return action.payload.user;
+	  case types.TOKEN_CHECK_FAILURE:
+		return initialUser;
+	  default:
+		return user;
 	}
+  }
+
+  //reducer 3, token reducer
+const initialToken = localStorage.getItem("token");
+export function tokenReducer(token = initialToken, action) {
+  switch (action.type) {
+    case types.LOGIN_SUCCESS:
+      return action.payload.token;
+    case types.LOG_OUT:
+      return null;
+    case types.TOKEN_CHECK_FAILURE:
+      return null;
+    case types.TOKEN_CHECK_SUCCESS:
+      return token;
+    default:
+      return token;
+  }
 }
