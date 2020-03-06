@@ -14,7 +14,7 @@ const Column = styled.div`
   align-items: center;
   width: 49%;
 `;
-const history=useHistory()
+
 export default function register() {
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("please enter your username"),
@@ -30,7 +30,6 @@ export default function register() {
   // const goToLogin = () => {
   //   history.push("/login");
   // };
-
 
   const initialState = {
     username: "",
@@ -57,6 +56,8 @@ export default function register() {
         .then(response => {
           console.log(response);
           actions.resetForm();
+          
+  const history=useHistory()
           history.push("/login")
           // goToLogin();
         })
