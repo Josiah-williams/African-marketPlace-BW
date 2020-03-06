@@ -3,8 +3,7 @@ import { Switch, Route, Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import axiosWithAuth from "../auth/axiosWithAuth";
-import { login } from "./state/actionCreators";
+import { login } from "../state/actionCreators";
 import { connect } from "react-redux";
 
 export function Login({ login }) {
