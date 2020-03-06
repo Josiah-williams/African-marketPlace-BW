@@ -11,7 +11,6 @@ import { checkToken, logout } from "./state/actionCreators";
 
 //Child components
 import Items from "./components/items"
-import UpdateItem from "./components/Edit-Item"
 import SellerForm from "./components/seller/sellerForm"
 import Login from "./components/user/Login"
 import Register from "./components/user/Register"
@@ -34,16 +33,13 @@ function App({ appState, user, checkToken, logout }) {
       <Route exact path="/Login">
         <Login />
       </Route>
-      <RestrictedRoute exact path="/items">
+      <RestrictedRoute exact path ="/items">
         <Items/>
         </RestrictedRoute>
         <RestrictedRoute exact path="/sellerForm">
         <SellerForm />
       </RestrictedRoute>
-      <RestrictedRoute exact path="/updateItem">
-        <UpdateItem/>
-        </RestrictedRoute>
-        </Switch>
+      </Switch>
         </div>
   
   );

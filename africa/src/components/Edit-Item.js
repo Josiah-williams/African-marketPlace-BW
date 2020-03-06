@@ -1,5 +1,5 @@
 import React  from 'react';
-import axios from './auth/node_modules/axios';
+import axios from './axios';
 import  items from './items'
 import { Formik, Form, Field } from "formik"
 
