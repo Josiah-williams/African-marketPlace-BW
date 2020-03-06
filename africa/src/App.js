@@ -1,64 +1,60 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
+import React, { useEffect } from "react";
+import { Switch, Route, Link, NavLink, useHistory } from "react-router-dom";
+import { connect } from "react-redux";
 
+//Redux actions
+import { checkToken, logout } from "./state/actionCreators";
 
-import { listReducer, userReducer } from "./state/reducers";
-import { combineReducers, createStore, compose, applyMiddleware } from "redux";
-import { Provider } from "react-redux";
-import thunk from "redux-thunk";
+// //styles
+// import "./CSS/App.css";
+// import styled from "styled-components";
 
+//Child components
+import Items from "./components/items"
+import UpdateItem from "./components/Edit-Item"
+import SellerForm from "./components/seller/sellerForm"
+import Login from "./components/user/Login"
+import Register from "./components/user/Register"
+import RestrictedRoute from "./auth/restrictedRoute";
 
-// Step 4: Use "combineReducers" to make a monster reducer
-const monsterReducer = combineReducers({
-	user: userReducer,
-	list: listReducer
-
-})
-  // Step 5: use "createStore" to make a redux store
-  const store = createStore(
-    monsterReducer, // we need the second arg to enable redux devtools
-    {},
-    compose(
-      applyMiddleware(thunk /* ,etc , other middlewares */),
-      window.__REDUX_DEVTOOLS_EXTENSION__ &&
-        window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
+function App({ appState, user, checkToken, logout }) {
+  const history = useHistory();
+  useEffect(() => {
+    if (!appState) {
+      checkToken(history);
+    }
+  }, []);
+  return (
+    
+    <div className="container">
+    <Switch>
+      <Route exact path="/">
+        <Register />
+      </Route>
+      <Route exact path="/Login">
+        <Login />
+      </Route>
+      <RestrictedRoute exact path="/items">
+        <Items/>
+        </RestrictedRoute>
+        <RestrictedRoute exact path="/sellerForm">
+        <SellerForm />
+      </RestrictedRoute>
+      <RestrictedRoute exact path="/updateItem">
+        <UpdateItem/>
+        </RestrictedRoute>
+        </Switch>
+        </div>
+  
   );
+}
 
-  ReactDOM.render(
-    // Step 6: use "Provider" to inject the store into the app
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.getElementById("root")
-  );
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+    
+
+
+
+
+  
 
 export default App;
