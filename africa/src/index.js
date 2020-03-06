@@ -9,15 +9,17 @@ import { Provider } from "react-redux";
 import {
   appStateReducer,
   userReducer,
-  tokenReducer,
+  // tokenReducer,
+  userDetailsReducer
 
-} from "./state/reducers";
+} from "./components/state/reducers";
 
 //Combining all the reducers
 const mainReducer = combineReducers({
     appState: appStateReducer,
     user: userReducer,
-    token: tokenReducer,
+    // token: tokenReducer,
+    userDetails: userDetailsReducer
 });
   
 //Creating a store
