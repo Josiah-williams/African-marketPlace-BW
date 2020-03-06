@@ -10,7 +10,8 @@ import {
   appStateReducer,
   userReducer,
   // tokenReducer,
-  userDetailsReducer
+  userDetailsReducer,
+  itemsReducer
 
 } from "./components/state/reducers";
 
@@ -19,6 +20,7 @@ const mainReducer = combineReducers({
     appState: appStateReducer,
     user: userReducer,
     // token: tokenReducer,
+    items: itemsReducer,
     userDetails: userDetailsReducer
 });
   
