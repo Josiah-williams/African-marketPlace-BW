@@ -14,14 +14,13 @@ import Items from "./components/items"
 import SellerForm from "./components/seller/sellerForm"
 import Login from "./components/user/Login"
 import Register from "./components/user/Register"
-import RestrictedRoute from "./components/auth/restrictedRoute";
+import RestrictedRoute from "./components/auth/protectedRoute";
 
 function App({ appState, user, checkToken, logout }) {
   const history = useHistory();
   useEffect(() => {
-    if (!appState) {
+    // if (!appState) {
       // checkToken(history);
-    }
   }, []);
   return (
     
@@ -33,9 +32,9 @@ function App({ appState, user, checkToken, logout }) {
       <Route exact path="/login">
         <Login />
       </Route>
-      <RestrictedRoute exact path ="/items">
+      <Route exact path ="/items">
         <Items/>
-        </RestrictedRoute>
+        </Route>
         <RestrictedRoute exact path="/sellerForm">
         <SellerForm />
       </RestrictedRoute>
