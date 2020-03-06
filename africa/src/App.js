@@ -3,7 +3,7 @@ import { Switch, Route, Link, NavLink, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
 //Redux actions
-import { checkToken, logout } from "./state/actionCreators";
+import {  logout } from "./components/state/actionCreators";
 
 // //styles
 // import "./CSS/App.css";
@@ -14,13 +14,13 @@ import Items from "./components/items"
 import SellerForm from "./components/seller/sellerForm"
 import Login from "./components/user/Login"
 import Register from "./components/user/Register"
-import RestrictedRoute from "./auth/restrictedRoute";
+import RestrictedRoute from "./components/auth/restrictedRoute";
 
 function App({ appState, user, checkToken, logout }) {
   const history = useHistory();
   useEffect(() => {
     if (!appState) {
-      checkToken(history);
+      // checkToken(history);
     }
   }, []);
   return (
@@ -45,12 +45,12 @@ function App({ appState, user, checkToken, logout }) {
   );
 }
 
+function mapStateToProps(state) {
+  return {
+    appState: state.appState,
+    user: state.user
+  };
+}
 
-    
+export default connect(mapStateToProps, { logout })(App);
 
-
-
-
-  
-
-export default App;
