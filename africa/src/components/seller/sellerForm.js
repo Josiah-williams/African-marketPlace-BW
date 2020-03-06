@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
-import axios from "./auth/AxiosWithAuth";
+import axios from "../auth/axiosWithAuth";
 import {useHistory} from 'react-router-dom';
 import styled from "styled-components";
 // import img10 from '../img/img10/AfricaFlag.png';
