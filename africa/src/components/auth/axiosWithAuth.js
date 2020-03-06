@@ -8,6 +8,6 @@ export default function axiosWithAuth() {
         headers:{
             Authorization: token
         }
-    })
-} 
+    });
 return axiosInstance
+}
