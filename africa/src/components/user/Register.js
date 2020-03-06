@@ -14,7 +14,7 @@ const Column = styled.div`
   align-items: center;
   width: 49%;
 `;
-
+const history=useHistory()
 export default function register() {
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("please enter your username"),
