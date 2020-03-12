@@ -11,7 +11,7 @@ export default function Additem({ setNewitemId }) {
     values.user_id = 1;
     axiosWithAuth()
       .post(
-        "https://africanmarketplacebackend.herokuapp.com/items/additem",
+        "https://lbs-african-marketplace.herokuapp.com.com/items/additem",
         values
       )
       .then(res => {
