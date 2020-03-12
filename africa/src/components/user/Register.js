@@ -1,39 +1,34 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-// import axios from "axios";
-import axiosWithAuth from "../auth/axiosWithAuth"
-import Login from "./Login";
-import { Link, withRouter } from "react-router-dom";
+import {useHistory} from "react-router-dom"
+import {axiosWithAuth} from "../auth/axiosWithAuth"
+import * as actionCreators from "../state/actionCreators"
+import {connect} from "react-redux"
 
-export default function Register(props) {
-  const history = props.history;
+export function Register(props) {
+  const history = useHistory();
 
   const initialState = {
     username: '',
+    password: '',
     department: '',
   
   }
   function handleSubmit(values, actions) {
     console.log(values);
-    debugger;
     axiosWithAuth()
       .post(
-        " https://lbs-african-marketplace.herokuapp.com/auth/register",
-        {
-          ...values,
-          profile_pic_url: ""
-        }
-      )
+        "/auth/register",
+        values)
+        
       .then(response => {
-        debugger;
         history.push("/login");
 
         console.log(response.data);
 
         actions.resetForm();
       })
-      .catch(error => console.log(error.response.data))
+      .catch(error => console.log(error.res))
       .finally(() => {
         console.log("done");
       });
@@ -78,3 +73,12 @@ export default function Register(props) {
     </Formik>
     </div>
     )}
+
+    function mapStateToProps(state) {
+      return {
+        formValues: state.formValues
+      };
+    }
+  
+    export default connect(mapStateToProps, actionCreators)(Register);
+  

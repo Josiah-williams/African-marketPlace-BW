@@ -1,34 +1,42 @@
 import React, { useState, useEffect} from "react";
 import { connect } from "react-redux";
 import  * as actionCreators  from "./state/actionCreators";
+import { useHistory } from "react-router-dom";
 
 
-export function Items({ getitems, items }) {
+export function Item(props) {
+  const history = useHistory();
     useEffect(() => {
-      getitems();
+      props.getitems()
     }, []);
-    if (!items){return null}
+    
+    const Logout = e => {
+      localStorage.removeItem("token");
+      history.push("/login");
+    };
+      
     return (
-      <>
+      <div>
         <h1>items List</h1>
-        {
-          
-           items.map(items => (
-              <div key={items.id}>
-                <div>{items.name}</div>
-                <div>
-                  <div> {items.description}</div>
-                  <div>{items.price}</div>
-                </div>
-				<div> {items.location}</div>
-				<div>{items.category}</div>
+        {props.items.map(item => (
+          <div>
+
+              <p>id: {item.id}</p>
+                <p>name: {item.name}</p>
+                <p> description: {item.description}</p>
+                  <p>price: {item.price}</p>
+				           <p>location: {item.location}</p>
+				            <p>category: {item.category}</p>
               </div>
-            ))
-       }
-        {}
-      </>
-    );
-  }
+        ))}
+
+        
+        <button onClick={Logout}>Log out</button>
+        </div>
+    )
+}
+
+    
    export default connect(
     function mapStateToProps(state) {
       return {
@@ -36,7 +44,7 @@ export function Items({ getitems, items }) {
       };
     },
     actionCreators
-  )(Items);
+  )(Item);
   
 // function items() {
 //     const [itemsList, setitemsList] = useState([]);

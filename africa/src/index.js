@@ -7,21 +7,18 @@ import thunk from "redux-thunk";
 import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import {
-  appStateReducer,
-  userReducer,
-  // tokenReducer,
-  userDetailsReducer,
-  itemsReducer
-
+  loginFormReducer,
+  signupFormReducer,
+  addFormReducer,
+  itemReducer
 } from "./components/state/reducers";
 
 //Combining all the reducers
 const mainReducer = combineReducers({
-    appState: appStateReducer,
-    user: userReducer,
-    // token: tokenReducer,
-    items: itemsReducer,
-    userDetails: userDetailsReducer
+    login: loginFormReducer,
+    Signup: signupFormReducer,
+    items: itemReducer,
+    add: addFormReducer
 });
   
 //Creating a store

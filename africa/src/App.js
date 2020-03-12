@@ -34,6 +34,9 @@ function App({ appState, user, checkToken, logout }) {
       </Route>
       <Route exact path ="/items">
         <Items/>
+        <Route exact path ="/Register">
+          Register
+        </Route>
         </Route>
         <RestrictedRoute exact path="/sellerForm">
         <SellerForm />

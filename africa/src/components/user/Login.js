@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Switch, Route, Link, useHistory } from "react-router-dom";
+import {login} from  "../state/actionCreators";
+import { connect } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { login } from "../state/actionCreators";
-import { connect } from "react-redux";
+import { Switch, Route, Link, useHistory } from "react-router-dom";
 
 export function Login({ login }) {
   const [type, setType] = useState(true);
@@ -22,6 +22,10 @@ export function Login({ login }) {
 
   function handleSubmit(values, actions) {
     login(values, history);
+  }
+
+  function handleType() {
+    setType(!type);
   }
 
   return (

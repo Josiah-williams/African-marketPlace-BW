@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
-import axios from "../auth/axiosWithAuth";
+import {axiosWithAuth} from "../auth/axiosWithAuth";
 import {useHistory} from 'react-router-dom';
 import styled from "styled-components";
 // import img10 from '../img/img10/AfricaFlag.png';
@@ -9,7 +9,7 @@ export default function Additem({ setNewitemId }) {
     const history=useHistory()
   function handleSubmit(values, actions) {
     values.user_id = 1;
-    axios
+    axiosWithAuth()
       .post(
         "https://africanmarketplacebackend.herokuapp.com/items/additem",
         values
