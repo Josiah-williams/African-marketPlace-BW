@@ -6,18 +6,18 @@ import styled from "styled-components";
 // import img10 from '../img/img10/AfricaFlag.png';
 
 export default function Additem({ setNewitemId }) {
-    const history=useHistory()
+    const history = useHistory()
   function handleSubmit(values, actions) {
     values.user_id = 1;
     axiosWithAuth()
       .post(
-        "https://lbs-african-marketplace.herokuapp.com.com/items/additem",
+        "/items/additem",
         values
       )
       .then(res => {
         setNewitemId(res.data);
         actions.resetForm();
-        history.push("/items")
+        history.push("/itempage")
       })
       .catch(error => {
         console.log(error.message);
@@ -95,7 +95,6 @@ const StyledAdd = styled.div`
   margin: 16px auto;
   text-align: center;
   background-size: 100% 100%;
-  background-image: url("https://www.pinclipart.com/picdir/big/384-3848811_african-animals-vinyl-wall-art-2083x2083-png-download.png");
   & form {
     display: flex;
     /* flex-direction: column; */
@@ -117,7 +116,7 @@ const StyledAdd = styled.div`
     & button {
       border-radius: 3px;
       /* padding:5px; */
-      background: transparent;
+      background: black;
       transition: 0.9s ease-in-out;
       padding: 10px 15px;
       font-size: 16px;

@@ -1,0 +1,45 @@
+//step 2 :Action Types
+export const INPUT_CHANGE = "INPUT_CHANGE"
+
+export const LOGIN ="LOGIN"
+export const LOGIN_START ="LOGIN_START"
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILED = "LOGIN FAILED";
+export const LOGIN_END ="LOGIN_END";
+//register
+export const REGISTER_START ="REGISTER_END"
+export const REGISTER_SUCCESS ="REGISTER_SUCCESS";
+export const REGISTER_FAILED = "REGISTER_FAILED";
+export const REGISTER_END ="REGISTER_END"
+export const DEPARTMENT_CHECK_SUCCESS ="DEPARTMENT_CHECK_SUCCESS"
+export const LOG_OUT = "LOG_OUT";
+export const DEPARTMENT_CHECK ="DEPARTMENT_CHECK"
+//fetch items
+export const GET_ITEMS = "GET_ITEMS";
+export const GET_ITEMS_SUCCESS ="GET_ITEMS_SUCCESS";
+export const GET_ITEMS_FAIL ="GET_ITEMS_FAIL";
+//post items
+export const POST_ITEMS ="POST_ITEMS";
+export const POST_ITEMS_SUCCESS ="POST_ITEMS_SUCCESS";
+export const POST_ITEMS_FAILURE ="POST_ITEMS_FAILURE";
+
+export const CREATE_ITEMS = "CREATE_ITEMS ";
+export const READ_ITEMS ="READ_ITEMS"
+export const UPDATE_ITEMS = "UPDATE_ITEM";
+// export const TOKEN_CHECK_SUCCESS = "TOKEN_CHECK_SUCCESS";
+// export const TOKEN_CHECK_FAILURE = "TOKEN_CHECK_FAILURE";
+export const SUBMITTED_USER_DETAILS = "SUBMITTED_USER_DETAILS";
+export const EDITED_USER_DETAILS = "EDITED_USER_DETAILS";
+export const DELETED_USER_DETAILS = "DELETED_USER_DETAILS";
+//owner
+export const ADD_ITEM = "ADD_ITEM";
+export const DELETE_ITEM = "DELETE_ITEM";
+export const DELETE_ITEM_SUCCESS = "DELETE_ITEM_SUCCESS"
+
+//seller
+export const ADD_TO_ITEM = "ADD_TO_ITEM";
+export const DELETE_TO_ITEM ="DELETE_TO_ITEM"
+
+//EDIT
+export const EDIT_ITEM_START ="EDIT_ITEM_START";
+export const EDIT_ITEM_SUCCESS= "EDIT_ITEM_SUCCESS"

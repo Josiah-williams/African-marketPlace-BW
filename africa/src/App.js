@@ -15,7 +15,9 @@ import SellerForm from "./components/seller/sellerForm"
 import Login from "./components/user/Login"
 import Register from "./components/user/Register"
 import RestrictedRoute from "./components/auth/protectedRoute";
-
+import Edititem from "./components/EditItem"
+import ItemPage from "./components/ItemPage"
+import UpdateItem from "./components/UpdateItem"
 function App({ appState, user, checkToken, logout }) {
   const history = useHistory();
   useEffect(() => {
@@ -34,13 +36,23 @@ function App({ appState, user, checkToken, logout }) {
       </Route>
       <Route exact path ="/items">
         <Items/>
+        </Route>
         <Route exact path ="/Register">
           Register
         </Route>
-        </Route>
-        <RestrictedRoute exact path="/sellerForm">
+        <Route exact path="/sellerForm">
         <SellerForm />
-      </RestrictedRoute>
+      </Route>
+      <Route exact path ="/edititem">
+        <Edititem />
+      </Route>
+      <Route exact path ="/itemPage">
+        <ItemPage />
+        <Route exact path = "/updateItem">
+          <UpdateItem />
+        </Route>
+
+      </Route>
       </Switch>
         </div>
   

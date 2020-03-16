@@ -10,7 +10,8 @@ import {
   loginFormReducer,
   signupFormReducer,
   addFormReducer,
-  itemReducer
+  itemReducer,
+  additemReducer
 } from "./components/state/reducers";
 
 //Combining all the reducers
@@ -18,7 +19,8 @@ const mainReducer = combineReducers({
     login: loginFormReducer,
     Signup: signupFormReducer,
     items: itemReducer,
-    add: addFormReducer
+    add: addFormReducer,
+    additem: additemReducer
 });
   
 //Creating a store

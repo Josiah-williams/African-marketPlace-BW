@@ -4,70 +4,74 @@ import  * as actionCreators  from "./state/actionCreators";
 import { useHistory } from "react-router-dom";
 
 
-export function Item(props) {
+
+export function Item({ getItems, items }) {
   const history = useHistory();
-    useEffect(() => {
-      props.getitems()
-    }, []);
+  useEffect(() => {
+    getItems();
+  }, []);
+  if (!items){return null}
+  
+  
+
     
     const Logout = e => {
       localStorage.removeItem("token");
       history.push("/login");
+      
     };
+    const sell = e => {
+      history.push("/sellerform")
+    }
       
     return (
-      <div>
+      <>
+      
         <h1>items List</h1>
-        {props.items.map(item => (
-          <div>
-
+        {
+        items.map(item => (
+          <div key = {item.id}>
+              
               <p>id: {item.id}</p>
-                <p>name: {item.name}</p>
-                <p> description: {item.description}</p>
-                  <p>price: {item.price}</p>
-				           <p>location: {item.location}</p>
-				            <p>category: {item.category}</p>
+              <div className="item-name">
+                <strong>
+                name: {item.name}</strong>
+                </div>
+                <div className="item-description">
+                <strong>description: {item.description}</strong>
+                </div>
+                <div className="item-price">
+                  <strong>price: {item.price}</strong>
+                  </div>
+                  <div className="item-location">
+				           <strong>location: {item.location}</strong>
+                   </div>
+                   <div className="item-category">
+				            <strong>category: {item.category}</strong>
               </div>
+              
+              
+              </div>
+            
+
+              
+    
         ))}
 
-        
+      
         <button onClick={Logout}>Log out</button>
-        </div>
+        <button onClick={sell}>sell</button>
+  </>
     )
 }
-
-    
+   
    export default connect(
     function mapStateToProps(state) {
+      console.log(state);
+      
       return {
         items: state.items.items
       };
     },
     actionCreators
   )(Item);
-  
-// function items() {
-//     const [itemsList, setitemsList] = useState([]);
-//     useEffect(() => {
-//         axiosWithAuth()
-// 		.get("https://lbs-african-marketplace.herokuapp.com/items")
-// 		.then(response=>{
-// 			setitemsList(
-// 				response.data
-// 			);
-// 			   // console.log(response)
-			
-// 			  }) 
-// 		.catch(error => {
-// 			console.log(error);
-// 		})
-
-// return (
-//     <>
-//       <itemsList items={itemsList} updateitems={setitemsList} />
-//       </>
-//     );
-// }
-//     )
-// }
-// export default items
