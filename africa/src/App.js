@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
-import { Switch, Route, Link, NavLink, useHistory } from "react-router-dom";
-import { connect } from "react-redux";
+import { Route, Switch, withRouter, Router, Link, NavLink, useHistory } from "react-router-dom";
 
-//Redux actions
-import {  logout } from "./components/state/actionCreators";
 
 // //styles
 // import "./CSS/App.css";
@@ -11,60 +8,43 @@ import {  logout } from "./components/state/actionCreators";
 
 //Child components
 import Items from "./components/items"
-import SellerForm from "./components/seller/sellerForm"
-import Login from "./components/user/Login"
-import Register from "./components/user/Register"
-import RestrictedRoute from "./components/auth/protectedRoute";
-import Edititem from "./components/EditItem"
-import ItemPage from "./components/ItemPage"
-import UpdateItem from "./components/UpdateItem"
-function App({ appState, user, checkToken, logout }) {
-  const history = useHistory();
-  useEffect(() => {
-    // if (!appState) {
-      // checkToken(history);
-  }, []);
+import SellerForm from "./seller/sellerForm"
+import Login from "./components/Login"
+import Register from "./components/Register"
+import RestrictedRoute from "./auth/protectedRoute";
+
+function App() {
   return (
     
-    <div className="container">
-    <Switch>
-      <Route exact path="/">
-        <Register />
+    <div>
+      <Link to="/login">
+        <button>Login</button>
+        </Link>
+      <Link to="/items">
+        <button>ItemsList</button>
+        </Link>
+        <Link to="/Register">
+          <button>Register</button>
+          </Link>
+        <Link to="/sellerForm">
+        <button>SellerForm</button>
+        </Link>
+        <Route path='/items'>
+        <Items />
       </Route>
-      <Route exact path="/login">
+      <Route path='/login'>
         <Login />
       </Route>
-      <Route exact path ="/items">
-        <Items/>
-        </Route>
-        <Route exact path ="/Register">
-          Register
-        </Route>
-        <Route exact path="/sellerForm">
+      <Route path='/Register'>
+        <Register />
+      </Route>
+      <Route path='/sellerForm'>
         <SellerForm />
       </Route>
-      <Route exact path ="/edititem">
-        <Edititem />
-      </Route>
-      <Route exact path ="/itemPage">
-        <ItemPage />
-        <Route exact path = "/updateItem">
-          <UpdateItem />
-        </Route>
 
-      </Route>
-      </Switch>
         </div>
   
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    appState: state.appState,
-    user: state.user
-  };
-}
-
-export default connect(mapStateToProps, { logout })(App);
-
+export default App
