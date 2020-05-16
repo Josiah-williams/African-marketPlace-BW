@@ -75,7 +75,7 @@ export function addFormReducer(state = sellerFormState, action) {
         ...state,
         [action.payload[0]]: action.payload[1]
       };
-    case types.ADD_ITEM:
+    case types.ADD_ITEM_START:
       return sellerFormState;
     default:
       return state;
@@ -83,15 +83,22 @@ export function addFormReducer(state = sellerFormState, action) {
 }
 
 const itemState = {
-  items:[]
-}
+  items:[],
+  userItems: [],
+  isLoadingItems: false,
+  isLoadingUserItems: false,
+  isAddingItem: false,
+  isUpdatingItem: false,
+  isDeletingItem: false,
+  error: null
+};
 export function itemReducer(state = itemState, action) {
   switch (action.type) {
-    case types.GET_ITEMS:
+    case types.GET_ITEMS_START:
       return {
         ...state,
         isFetching:true,
-        error: ''
+        error: null
       };
     case types.GET_ITEMS_SUCCESS:
       console.log(action.payload)
@@ -99,13 +106,14 @@ export function itemReducer(state = itemState, action) {
         ...state,
         items: action.payload,
         isFetching:false,
-        error: ''
+        error: null
       };
     case types.GET_ITEMS_FAIL:
       return {
         ...state,
         isFetching:false,
-        error:action.payload
+        error:action.payload,
+        items: null
       };
     case types.POST_ITEMS:
       return {
@@ -121,25 +129,90 @@ export function itemReducer(state = itemState, action) {
         items: action.payload,
         error: ''
       };
-    case types.POST_ITEMS_FAILURE:
+      case types.POST_ITEMS_FAILURE:
       return {
         ...state,
         isFetching:false,
         error:action.payload
+      }
+        case types.GET_USER_ITEMS_START:
+          return {
+            ...state,
+            isLoadingUserItems: true,
+            error: null
+          };
+          case types.GET_USER_ITEMS_SUCCESS:
+      return {
+        ...state,
+        isLoadingUserItems: false,
+        userItems: action.payload,
+        error: null
       };
-      case types.DELETE_ITEM:
+      case types.GET_USER_ITEMS_FAILURE:
+      return {
+        ...state,
+        isLoadingUserItems: false,
+        error: action.payload,
+        userItems: null
+      };
+      case types.ADD_ITEM_START:
+      return {
+        ...state,
+
+        isAddingItem: true,
+        error: null
+      };
+      case types.ADD_ITEM_SUCCESS:
         return {
           ...state,
-          item: action.payload,
-          isFetching:true,
-          error:''
+          isAddingItem: false,
+          items: state.items.concat(action.payload),
+          error: null
+        };
+        case types.ADD_ITEM_FAILURE:
+          return {
+            ...state,
+            isAddingItem: false,
+            error: action.payload
+          };
+          case types.UPDATE_ITEM_START:
+            return {
+              ...state,
+              isUpdatingItem: true,
+            }
+      case types.UPDATE_ITEM_SUCCESS:
+      return {
+        ...state,
+        isUpdatingItem: false,
+        error: null,
+        userItems: action.payload
+      };
+     
+      case types.UPDATE_ITEM_FAILURE:
+        return {
+          ...state,
+          error: action.payload,
+          isUpdatingItem: false
+        };
+      case types.DELETE_ITEM_START:
+        return {
+          ...state,
+          isDeletingItem:true,
+          error: null
         };
         case types.DELETE_ITEM_SUCCESS:
           return {
-            isFetching:false,
-            items: action.payload,
-            error: ''
-          }
+            ...state,
+            isDeletingItem:false,
+            error: null
+          };
+          case types.DELETE_ITEM_FAILURE:
+            return {
+              ...state,
+              isDeletingItem: false,
+              error: action.payload
+            };
+
     default:
       return state;
     }
