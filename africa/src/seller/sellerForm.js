@@ -1,9 +1,8 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
-import {axiosWithAuth} from "../auth/axiosWithAuth";
+import {axiosWithAuth} from "../components/auth/axiosWithAuth";
 import {useHistory} from 'react-router-dom';
 import styled from "styled-components";
-// import img10 from '../img/img10/AfricaFlag.png';
 
 export default function Additem({ setNewitemId }) {
     const history = useHistory()
@@ -30,7 +29,6 @@ export default function Additem({ setNewitemId }) {
   return (
     <StyledAdd>
       <div className="additem">
-      {/* <img src={img10} alt="flag" className="navbar-img10"></img> */}
         <Formik
           initialValues={{
             name: "",

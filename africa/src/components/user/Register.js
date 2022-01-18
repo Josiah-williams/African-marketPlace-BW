@@ -39,7 +39,6 @@ export function Register(props) {
       <h1>Africa MarketPlace SignUp Form</h1>
       <Formik
         onSubmit={handleSubmit}
-        // validationSchema={validationSchema}
         initialValues={initialState}
 >
         <Form className="form">
