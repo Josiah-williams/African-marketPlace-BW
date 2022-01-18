@@ -112,4 +112,4 @@ export function Item({ getItems, items }) {
       };
     },
     actionCreators
-  )(Item); 
+  )(Item); }
